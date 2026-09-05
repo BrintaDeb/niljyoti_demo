@@ -229,6 +229,63 @@ html, body {
     display: block;
   }
 
+  /* ==========================================================================
+     CARD ANIMATIONS DISABLED ON MOBILE VIEW
+     Card animations, hover lifts, 3D tilt, and image scaling are disabled on mobile
+     ========================================================================== */
+  .vehicle-card,
+  .package-card,
+  .pillar-card,
+  .station-item-card,
+  .station-accordion-card,
+  .route-card,
+  .media-card,
+  .review-card,
+  .how-step-card,
+  .hero-glass-card,
+  .hero-visual-banner,
+  .rate-choice-card,
+  .protection-card,
+  .booking-pod-wrapper,
+  [data-3d-tilt] {
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+    will-change: auto !important;
+  }
+
+  .vehicle-card:hover,
+  .package-card:hover,
+  .pillar-card:hover,
+  .station-item-card:hover,
+  .station-accordion-card:hover,
+  .route-card:hover,
+  .media-card:hover,
+  .review-card:hover,
+  .how-step-card:hover,
+  .hero-glass-card:hover,
+  .hero-visual-banner:hover,
+  .rate-choice-card:hover,
+  .protection-card:hover,
+  .booking-pod-wrapper:hover,
+  [data-3d-tilt]:hover {
+    transform: none !important;
+    box-shadow: var(--shadow-sm) !important;
+  }
+
+  /* Disable card photo zoom and specular glare on mobile */
+  .vehicle-card:hover .vehicle-photo-img,
+  .package-card:hover .package-img,
+  .hero-visual-banner:hover .hero-visual-img {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .card-3d-glare {
+    display: none !important;
+    opacity: 0 !important;
+  }
+
   .brand-subtitle {
     display: none;
   }

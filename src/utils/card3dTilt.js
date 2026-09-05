@@ -4,6 +4,8 @@
  */
 
 export function init3DCardTilt(root = document) {
+  const isMobile = () => window.innerWidth <= 768 || window.matchMedia('(max-width: 768px)').matches;
+
   const cards = root.querySelectorAll('[data-3d-tilt]');
 
   cards.forEach(card => {
@@ -23,12 +25,16 @@ export function init3DCardTilt(root = document) {
     let bounds = null;
 
     const onEnter = () => {
+      // Disabled on mobile view
+      if (isMobile()) return;
       bounds = card.getBoundingClientRect();
       card.style.transition = 'transform 0.15s ease-out, box-shadow 0.15s ease-out';
       glare.style.opacity = '1';
     };
 
     const onMove = (e) => {
+      // Disabled on mobile view
+      if (isMobile()) return;
       if (!bounds) bounds = card.getBoundingClientRect();
       const x = e.clientX - bounds.left;
       const y = e.clientY - bounds.top;
@@ -38,6 +44,14 @@ export function init3DCardTilt(root = document) {
 
       if (rafId) cancelAnimationFrame(rafId);
       rafId = requestAnimationFrame(() => {
+        // Double check mobile state before applying frame
+        if (isMobile()) {
+          card.style.transform = 'none';
+          card.style.boxShadow = '';
+          glare.style.opacity = '0';
+          return;
+        }
+
         const maxRot = 10; // degrees
         const rotX = -py * maxRot;
         const rotY = px * maxRot;
@@ -56,13 +70,24 @@ export function init3DCardTilt(root = document) {
       bounds = null;
       if (rafId) cancelAnimationFrame(rafId);
       card.style.transition = 'transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.5s ease';
-      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px) scale3d(1, 1, 1)';
+      card.style.transform = isMobile() ? 'none' : 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px) scale3d(1, 1, 1)';
       card.style.boxShadow = '';
       glare.style.opacity = '0';
+    };
+
+    const onResize = () => {
+      if (isMobile()) {
+        if (rafId) cancelAnimationFrame(rafId);
+        card.style.transform = 'none';
+        card.style.transition = 'none';
+        card.style.boxShadow = '';
+        glare.style.opacity = '0';
+      }
     };
 
     card.addEventListener('pointerenter', onEnter);
     card.addEventListener('pointermove', onMove);
     card.addEventListener('pointerleave', onLeave);
+    window.addEventListener('resize', onResize, { passive: true });
   });
 }
