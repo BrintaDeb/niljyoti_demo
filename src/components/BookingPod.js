@@ -90,7 +90,7 @@ export function renderBookingPod(container, { onSearch, initialCriteria }) {
           </button>
           <button class="service-toggle-btn ${state.serviceType === 'chauffeur' ? 'active' : ''}" id="btnServiceChauffeur">
             <span>👨‍✈️</span>
-            <span>Chauffeur Drive (With Driver)</span>
+            <span>Chauffeur <span class="service-tag-extra">(With Driver)</span></span>
           </button>
         </div>
       </div>
