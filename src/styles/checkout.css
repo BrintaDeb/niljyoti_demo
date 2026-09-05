@@ -1,0 +1,775 @@
+/* ==========================================================================
+   MINIMALIST CHECKOUT & MODAL STYLES (LIGHT THEME)
+   Clean 5-Step Guided Booking Drawer, Itemized GST Invoice, and Vouchers
+   ========================================================================== */
+
+/* Modal Backdrop Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  overflow-y: auto;
+}
+
+.modal-overlay.active {
+  display: flex;
+  animation: fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Modal Content Container */
+.checkout-modal-container {
+  background: #FFFFFF;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-xl);
+  width: 100%;
+  max-width: 880px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Modal Header */
+.modal-header-bar {
+  padding: 1.25rem 1.75rem;
+  border-bottom: 1px solid var(--border-default);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #FFFFFF;
+  flex-shrink: 0;
+}
+
+.modal-title-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.modal-subtitle {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.modal-close-btn {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-default);
+  color: var(--text-muted);
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  font-size: 1rem;
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.modal-close-btn:hover {
+  background: var(--accent-rose-light);
+  color: var(--accent-rose);
+  border-color: var(--accent-rose-light);
+}
+
+/* ==========================================================================
+   PROGRESS STEPPER
+   ========================================================================== */
+.checkout-stepper {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  background: var(--bg-canvas);
+  border-bottom: 1px solid var(--border-default);
+  padding: 0.65rem 1.25rem;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.step-indicator-item {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.5rem;
+  border-radius: var(--radius-md);
+  opacity: 0.5;
+  transition: all var(--transition-fast);
+}
+
+.step-indicator-item.active {
+  opacity: 1;
+  background: #FFFFFF;
+  border: 1px solid var(--border-default);
+  box-shadow: var(--shadow-xs);
+}
+
+.step-indicator-item.completed {
+  opacity: 0.9;
+  color: var(--brand-primary);
+}
+
+.step-num-badge {
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius-full);
+  background: var(--bg-subtle);
+  color: var(--text-secondary);
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  display: grid;
+  place-content: center;
+}
+
+.step-indicator-item.active .step-num-badge {
+  background: var(--text-primary);
+  color: #FFFFFF;
+}
+
+.step-indicator-item.completed .step-num-badge {
+  background: var(--brand-primary);
+  color: #FFFFFF;
+}
+
+.step-title-text {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+/* Modal Body */
+.modal-body-scrollable {
+  padding: 1.5rem 1.75rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* Modal Footer Bar */
+.modal-footer-bar {
+  padding: 1rem 1.75rem;
+  border-top: 1px solid var(--border-default);
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.modal-footer-price-peek {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-total-label {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.footer-total-amount {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.1;
+}
+
+.modal-nav-btns {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.btn-step-prev {
+  background: #FFFFFF;
+  border: 1px solid var(--border-default);
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.6rem 1.15rem;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-step-prev:hover {
+  background: var(--bg-subtle);
+  border-color: var(--border-strong);
+}
+
+.btn-step-next {
+  background: var(--brand-primary);
+  color: #FFFFFF;
+  border: none;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 700;
+  padding: 0.65rem 1.5rem;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  box-shadow: var(--shadow-xs);
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.btn-step-next:hover {
+  background: var(--brand-primary-hover);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   STEP 1: RATE SELECTION
+   ========================================================================== */
+.rates-comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+.rate-choice-card {
+  background: #FFFFFF;
+  border: 2px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  position: relative;
+}
+
+.rate-choice-card:hover {
+  border-color: var(--border-strong);
+}
+
+.rate-choice-card.selected {
+  border-color: var(--brand-primary);
+  background: var(--brand-primary-light);
+}
+
+.rate-choice-badge {
+  position: absolute;
+  top: -10px;
+  right: 1.25rem;
+  background: var(--brand-primary);
+  color: #FFFFFF;
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+}
+
+.rate-card-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.rate-price-large {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 0.85rem;
+  line-height: 1;
+}
+
+.rate-features-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.rate-feature-item {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+.rate-feature-item.highlight {
+  color: var(--brand-primary);
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   STEP 2: PROTECTION PACKAGES
+   ========================================================================== */
+.protection-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.protection-card {
+  background: #FFFFFF;
+  border: 2px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.protection-card:hover {
+  border-color: var(--border-strong);
+}
+
+.protection-card.selected {
+  border-color: var(--brand-primary);
+  background: var(--brand-primary-light);
+}
+
+.protection-pill-badge {
+  position: absolute;
+  top: -10px;
+  right: 1rem;
+  background: var(--text-primary);
+  color: #FFFFFF;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.15rem 0.55rem;
+  border-radius: var(--radius-full);
+}
+
+.protection-card.selected .protection-pill-badge {
+  background: var(--brand-primary);
+}
+
+.prot-card-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 0.15rem;
+}
+
+.prot-price-rate {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 0.35rem;
+}
+
+.prot-excess-notice {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--brand-primary);
+  background: #FFFFFF;
+  border: 1px solid var(--brand-primary-border);
+  padding: 0.3rem 0.5rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 0.85rem;
+}
+
+.protection-items-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+}
+
+.protection-item-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  color: var(--text-secondary);
+}
+
+.protection-item-row.excluded {
+  opacity: 0.35;
+  text-decoration: line-through;
+}
+
+/* ==========================================================================
+   STEP 3: EXTRAS & ADD-ONS
+   ========================================================================== */
+.extras-cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-top: 1rem;
+}
+
+.extra-option-row {
+  background: #FFFFFF;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  transition: border-color var(--transition-fast);
+}
+
+.extra-option-row:hover {
+  border-color: var(--border-strong);
+}
+
+.extra-left-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.extra-icon-bubble {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-md);
+  background: var(--bg-subtle);
+  display: grid;
+  place-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.extra-details-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.extra-title-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.extra-name {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.extra-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  background: var(--brand-primary-light);
+  color: var(--brand-primary);
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+}
+
+.extra-desc {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 0.15rem;
+  max-width: 460px;
+}
+
+.extra-price-toggle-box {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-shrink: 0;
+}
+
+.extra-price-tag {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-align: right;
+}
+
+.btn-toggle-extra {
+  padding: 0.45rem 1rem;
+  border-radius: var(--radius-md);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border: 1px solid var(--border-default);
+  background: #FFFFFF;
+  color: var(--text-primary);
+}
+
+.btn-toggle-extra:hover {
+  background: var(--bg-subtle);
+}
+
+.btn-toggle-extra.added {
+  background: var(--brand-primary);
+  color: #FFFFFF;
+  border-color: var(--brand-primary);
+}
+
+/* ==========================================================================
+   STEP 4: DRIVER DETAILS FORM
+   ========================================================================== */
+.driver-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.form-group-full {
+  grid-column: 1 / -1;
+}
+
+.form-field-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.form-field-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+
+.form-input-styled, .form-select-styled {
+  background: #FFFFFF;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  padding: 0.7rem 0.9rem;
+  color: var(--text-primary);
+  font-size: 0.92rem;
+  font-weight: 500;
+  outline: none;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.form-input-styled:focus, .form-select-styled:focus {
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 0 3px rgba(24, 156, 244, 0.18);
+}
+
+.form-hint {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+}
+
+/* ==========================================================================
+   STEP 5: ITEMIZED INVOICE & PAYMENT SIMULATION
+   ========================================================================== */
+.invoice-payment-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.invoice-summary-box {
+  background: var(--bg-canvas);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+}
+
+.invoice-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-default);
+}
+
+.invoice-line-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.65rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.invoice-line-item.discount {
+  color: var(--brand-primary);
+  font-weight: 700;
+}
+
+.invoice-line-item.total-row {
+  margin-top: 0.85rem;
+  padding-top: 0.85rem;
+  border-top: 2px dashed var(--border-default);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.refundable-deposit-alert {
+  background: var(--accent-amber-light);
+  border: 1px solid #FDE68A;
+  padding: 0.65rem 0.85rem;
+  border-radius: var(--radius-md);
+  margin-top: 1rem;
+  font-size: 0.76rem;
+  color: #92400E;
+  line-height: 1.4;
+}
+
+/* Payment Mode Tabs */
+.payment-method-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.4rem;
+  margin-top: 0.4rem;
+}
+
+.pay-tab-btn {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-default);
+  color: var(--text-secondary);
+  padding: 0.55rem 0.4rem;
+  border-radius: var(--radius-md);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  transition: all var(--transition-fast);
+}
+
+.pay-tab-btn.active {
+  background: var(--text-primary);
+  color: #FFFFFF;
+  border-color: var(--text-primary);
+}
+
+/* UPI QR Code Mockup */
+.upi-qr-box {
+  background: #FFFFFF;
+  border: 1px solid var(--border-default);
+  color: var(--text-primary);
+  padding: 1.25rem;
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.qr-code-graphic {
+  width: 125px;
+  height: 125px;
+  background: #000000;
+  padding: 6px;
+  border-radius: 8px;
+  display: grid;
+  place-content: center;
+}
+
+.qr-code-graphic svg {
+  width: 100%;
+  height: 100%;
+}
+
+.upi-brands-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   CONFIRMATION VOUCHER MODAL
+   ========================================================================== */
+.voucher-content-box {
+  background: #FFFFFF;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-xl);
+  padding: 2rem;
+  text-align: center;
+}
+
+.voucher-success-badge {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-full);
+  background: var(--brand-primary-light);
+  color: var(--brand-primary);
+  border: 1px solid var(--brand-primary-border);
+  display: grid;
+  place-content: center;
+  font-size: 1.75rem;
+  font-weight: 900;
+  margin: 0 auto 1rem auto;
+}
+
+.voucher-ref-code {
+  font-family: var(--font-display);
+  font-size: 1.85rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  color: var(--text-primary);
+  background: var(--bg-canvas);
+  border: 1px dashed var(--border-strong);
+  padding: 0.4rem 1.25rem;
+  border-radius: var(--radius-md);
+  display: inline-block;
+  margin: 0.75rem 0;
+}
+
+.voucher-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+  text-align: left;
+  background: var(--bg-canvas);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  margin: 1.25rem 0;
+}
+
+.voucher-detail-cell {
+  display: flex;
+  flex-direction: column;
+}
+
+.vd-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.vd-val {
+  font-weight: 700;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}

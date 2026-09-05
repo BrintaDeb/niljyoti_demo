@@ -1,0 +1,967 @@
+/* ==========================================================================
+   NILJYOTI TRAVELS — CLIENT COLOR PALETTE & DESIGN SYSTEM
+   Authentic Client Palette (#189cf4 Azure Blue, #02b3e4 Cyan, #163b5c Logo Navy)
+   ========================================================================== */
+
+:root {
+  /* Canvas & Surface Colors from niljyotitripura.com */
+  --bg-canvas: #edf1f7;
+  --bg-surface: #FFFFFF;
+  --bg-subtle: #f4f7fb;
+  --bg-card: #FFFFFF;
+  --bg-glass: rgba(255, 255, 255, 0.88);
+
+  /* Primary Brand Accents (Exact Client Azure Blue & Cyan Gradient) */
+  --brand-primary: #189cf4;
+  --brand-primary-hover: #02b3e4;
+  --brand-primary-light: #eaf5fe;
+  --brand-primary-border: #b8e2fc;
+
+  /* Client Logo Navy & Deep Contrast */
+  --brand-navy: #163b5c;
+  --brand-navy-dark: #0f273d;
+
+  /* Client Signature Gradients & Glows (from niljyotitripura.com css/main.css) */
+  --brand-gradient: linear-gradient(90deg, #6cc4ff 6%, #189cf4 100%);
+  --brand-gradient-hover: linear-gradient(90deg, #189cf4 6%, #02b3e4 100%);
+  --brand-glow: 0 4px 18px rgba(24, 156, 244, 0.35);
+
+  --accent-blue: #189cf4;
+  --accent-blue-light: #eaf5fe;
+  --accent-amber: #f59e0b;
+  --accent-amber-light: #FFFBEB;
+  --accent-rose: #E11D48;
+  --accent-rose-light: #FFF1F2;
+
+  /* Typography Colors (Exact High Contrast Deep Navy-Charcoal from Client Site) */
+  --text-primary: #33334f;
+  --text-secondary: #4e5d78;
+  --text-muted: #718096;
+  --text-dim: #94A3B8;
+  --text-white: #FFFFFF;
+
+  /* Borders & Dividers */
+  --border-subtle: #edf1f7;
+  --border-default: #dbe3ed;
+  --border-strong: #CBD5E1;
+  --border-focus: #189cf4;
+
+  /* Typography System */
+  --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Shadows (Soft Ambient Diffusion) */
+  --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-sm: 0 2px 4px rgba(15, 23, 42, 0.05), 0 1px 2px rgba(15, 23, 42, 0.03);
+  --shadow-md: 0 4px 16px -2px rgba(15, 23, 42, 0.06), 0 2px 4px -1px rgba(15, 23, 42, 0.03);
+  --shadow-lg: 0 12px 32px -4px rgba(15, 23, 42, 0.08), 0 4px 12px -2px rgba(15, 23, 42, 0.04);
+  --shadow-hover: 0 20px 40px -8px rgba(15, 23, 42, 0.1), 0 4px 12px -2px rgba(15, 23, 42, 0.03);
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-normal: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-spring: 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Reset & Box Sizing */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  line-height: 1.6;
+  background-color: var(--bg-canvas);
+  color: var(--text-secondary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Base Links & Form Elements */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+  color: inherit;
+  border-radius: var(--radius-md);
+}
+
+/* Layout Container */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  position: relative;
+}
+
+/* ==========================================================================
+   MINIMALIST ANNOUNCEMENT TOP BAR
+   ========================================================================== */
+.ticker-wrap {
+  background: #FFFFFF;
+  border-bottom: 1px solid var(--border-default);
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.5rem 0;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  z-index: 100;
+}
+
+.ticker-content {
+  display: inline-block;
+  animation: ticker-slide 40s linear infinite;
+  padding-left: 100%;
+}
+
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-right: 2.5rem;
+  color: var(--text-secondary);
+}
+
+.ticker-item strong {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.ticker-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--brand-primary);
+}
+
+@keyframes ticker-slide {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-100%, 0, 0); }
+}
+
+/* ==========================================================================
+   NAVBAR (MINIMALIST HEADER)
+   ========================================================================== */
+.site-header {
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-default);
+  position: sticky;
+  top: 0;
+  z-index: 90;
+  transition: all var(--transition-normal);
+}
+
+.site-header.scrolled {
+  background: #FFFFFF;
+  box-shadow: var(--shadow-sm);
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+
+/* Brand Logo */
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.brand-logo-img {
+  height: 52px;
+  width: auto;
+  max-width: 90px;
+  object-fit: contain;
+  transition: transform var(--transition-spring), filter var(--transition-normal);
+  filter: drop-shadow(0 2px 8px rgba(24, 156, 244, 0.2));
+}
+
+.brand-logo:hover .brand-logo-img {
+  transform: scale(1.06);
+  filter: drop-shadow(0 4px 14px rgba(24, 156, 244, 0.35));
+}
+
+.footer-logo-img {
+  height: 58px;
+  width: auto;
+  max-width: 95px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 10px rgba(24, 156, 244, 0.25));
+}
+
+.brand-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--brand-primary-light);
+  border: 1px solid var(--brand-primary-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  color: var(--brand-primary);
+  transition: transform var(--transition-spring);
+}
+
+.brand-logo:hover .brand-icon-wrap {
+  transform: scale(1.05);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  line-height: 1.1;
+}
+
+.brand-subtitle {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brand-primary);
+}
+
+/* Desktop Navigation Menu */
+.nav-center-menu {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-link {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.2rem;
+  transition: color var(--transition-fast);
+  cursor: pointer;
+  position: relative;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--text-primary);
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--brand-primary);
+  border-radius: 999px;
+}
+
+.nav-badge-pill {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-full);
+  background: var(--brand-primary-light);
+  color: var(--brand-primary);
+}
+
+/* Right Header Actions */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+/* Currency Selector */
+.currency-selector-wrap {
+  position: relative;
+}
+
+.currency-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  padding: 0.45rem 0.75rem;
+  border-radius: var(--radius-md);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.currency-btn:hover {
+  border-color: var(--border-strong);
+  background: var(--bg-subtle);
+}
+
+.currency-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: #FFFFFF;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  padding: 0.4rem;
+  display: none;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 145px;
+  box-shadow: var(--shadow-lg);
+  z-index: 100;
+}
+
+.currency-dropdown.show {
+  display: flex;
+  animation: popIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.currency-opt {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.currency-opt:hover, .currency-opt.active {
+  background: var(--brand-primary-light);
+  color: var(--brand-primary);
+}
+
+/* Manage Booking Button */
+.btn-manage-booking {
+  background: #FFFFFF;
+  border: 1px solid var(--border-default);
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  transition: all var(--transition-fast);
+}
+
+.btn-manage-booking:hover {
+  border-color: var(--text-primary);
+  background: var(--bg-subtle);
+}
+
+/* 24/7 Helpline Pill */
+.helpline-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.live-pulse {
+  width: 7px;
+  height: 7px;
+  background: var(--brand-primary);
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px rgba(24, 156, 244, 0.25);
+}
+
+/* Mobile Hamburger Menu */
+.mobile-menu-btn {
+  display: none;
+  background: #FFFFFF;
+  border: 1px solid var(--border-default);
+  color: var(--text-primary);
+  padding: 0.45rem 0.7rem;
+  border-radius: var(--radius-md);
+  font-size: 1.15rem;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   HERO SECTION (CLEAN MINIMALIST EDITORIAL)
+   ========================================================================== */
+.hero-section {
+  padding: 3.5rem 0 2rem 0;
+  background: linear-gradient(180deg, #FFFFFF 0%, var(--bg-canvas) 100%);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.hero-header-block {
+  text-align: center;
+  max-width: 880px;
+  margin: 0 auto 2.5rem auto;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--brand-primary-light);
+  border: 1px solid var(--brand-primary-border);
+  color: var(--brand-primary);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.85rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 1rem;
+}
+
+.hero-main-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.hero-main-title .gradient-text-saffron,
+.hero-main-title .gradient-text-primary,
+.gradient-text-saffron,
+.gradient-text-primary {
+  color: var(--brand-primary);
+}
+
+.hero-subtitle {
+  font-size: clamp(0.95rem, 1.8vw, 1.12rem);
+  color: var(--text-muted);
+  font-weight: 500;
+  max-width: 720px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Live Stats Strip */
+.hero-stats-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.hero-stat-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.stat-number {
+  font-family: var(--font-display);
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-align: left;
+  line-height: 1.3;
+}
+
+/* Animations */
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   MODERN CLIENT HERO VISUAL BANNER & GRAPHIC HUD
+   Featuring Niljyoti's verified fleet (Dzire & Innova Crysta), Tripura mountain 
+   highway sunrise, floating holographic telemetry pills, and 3D card tilt
+   ========================================================================== */
+.hero-visual-banner {
+  position: relative;
+  width: 100%;
+  max-width: 1160px;
+  height: 480px;
+  margin: 1.5rem auto 2.25rem auto;
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 25px 60px -15px rgba(15, 23, 42, 0.2), 0 0 0 1px rgba(24, 156, 244, 0.25);
+  transform-style: preserve-3d;
+  background: #0F172A;
+}
+
+.hero-visual-media-wrap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.hero-visual-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 60%;
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+  animation: heroImgPan 25s ease-in-out infinite alternate;
+}
+
+@keyframes heroImgPan {
+  0% { transform: scale(1.02); }
+  50% { transform: scale(1.06) translate(-0.5%, -0.5%); }
+  100% { transform: scale(1.03) translate(0.5%, 0.5%); }
+}
+
+.hero-visual-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg, 
+    rgba(15, 23, 42, 0.5) 0%, 
+    rgba(15, 23, 42, 0.1) 40%, 
+    rgba(15, 23, 42, 0.75) 100%
+  );
+  pointer-events: none;
+}
+
+/* Floating Interactive HUD Overlay inside Hero Visual */
+.hero-visual-hud {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.hero-hud-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.hero-badge-pill {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.5rem 1.15rem;
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 800;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hero-badge-pill:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+}
+
+.hero-badge-pill.primary-pill {
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(24, 156, 244, 0.35);
+  color: var(--brand-primary);
+}
+
+.hero-badge-pill.airport-pill {
+  background: rgba(15, 23, 42, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #FFFFFF;
+}
+
+.live-indicator {
+  background: #189cf4;
+  color: #FFFFFF;
+  font-size: 0.65rem;
+  font-weight: 900;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  letter-spacing: 0.06em;
+  box-shadow: 0 0 10px rgba(24, 156, 244, 0.6);
+}
+
+/* Floating Center Brand Badge */
+.hero-hud-center-tag {
+  align-self: center;
+  text-align: center;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--radius-xl);
+  padding: 0.65rem 1.75rem;
+  color: #FFFFFF;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  pointer-events: auto;
+  transition: transform 0.3s ease;
+}
+
+.hero-hud-center-tag:hover {
+  transform: scale(1.03);
+}
+
+.hero-tag-title {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: #FBBF24;
+  text-transform: uppercase;
+}
+
+.hero-tag-desc {
+  display: block;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.92);
+  margin-top: 0.15rem;
+}
+
+/* Bottom HUD Row: Verified Fleet & Govt Trust Card */
+.hero-hud-bottom-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.hero-glass-card {
+  pointer-events: auto;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  border-radius: var(--radius-xl);
+  padding: 1rem 1.25rem;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  max-width: 360px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-glass-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 45px rgba(24, 156, 244, 0.25);
+}
+
+.hero-glass-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.88rem;
+  color: var(--brand-primary);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.3rem;
+}
+
+.hero-glass-card p {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 0.55rem 0;
+  line-height: 1.35;
+}
+
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.card-tags span {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  background: #F1F5F9;
+  padding: 0.2rem 0.55rem;
+  border-radius: 6px;
+}
+
+.hero-glass-card.rating-card {
+  text-align: right;
+  background: rgba(15, 23, 42, 0.9);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.rating-stars {
+  color: #FBBF24;
+  font-size: 1rem;
+  letter-spacing: 0.12em;
+}
+
+.rating-score {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: #FFFFFF;
+  line-height: 1.1;
+  margin: 0.2rem 0;
+}
+
+.rating-meta {
+  font-size: 0.74rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 500;
+}
+
+.govt-trust-badge {
+  margin-top: 0.45rem;
+  padding-top: 0.45rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #34D399;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* ==========================================================================
+   PHYSICS 3D CARD TILT & HOLOGRAPHIC SPECULAR GLARE
+   ========================================================================== */
+[data-3d-tilt] {
+  transform-style: preserve-3d;
+  will-change: transform, box-shadow;
+  position: relative;
+  transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
+}
+
+.card-3d-glare {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 5;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  mix-blend-mode: overlay;
+}
+
+/* ==========================================================================
+   ANIMATED ROAD HORIZON DIVIDER
+   ========================================================================== */
+.road-divider-wrap {
+  width: 100%;
+  height: 48px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.road-divider-track {
+  width: 100%;
+  max-width: 1200px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, var(--border-default) 15%, var(--brand-primary) 50%, var(--border-default) 85%, transparent 100%);
+  position: relative;
+}
+
+.road-divider-car-icon {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: #FFFFFF;
+  border: 2px solid var(--brand-primary);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-content: center;
+  font-size: 1rem;
+  box-shadow: 0 0 15px rgba(24, 156, 244, 0.4);
+  animation: driveAlongRoad 14s ease-in-out infinite alternate;
+}
+
+@keyframes driveAlongRoad {
+  0% { left: 10%; transform: translate(-50%, -50%) scaleX(1); }
+  48% { left: 90%; transform: translate(-50%, -50%) scaleX(1); }
+  50% { left: 90%; transform: translate(-50%, -50%) scaleX(-1); }
+  98% { left: 10%; transform: translate(-50%, -50%) scaleX(-1); }
+  100% { left: 10%; transform: translate(-50%, -50%) scaleX(1); }
+}
+
+/* ==========================================================================
+   RADAR PULSE BEACON FOR 24/7 HELPLINE & AIRPORT
+   ========================================================================== */
+.live-pulse {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  background: var(--brand-primary);
+  border-radius: 50%;
+}
+
+.live-pulse::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid var(--brand-primary);
+  opacity: 0.8;
+  animation: radarPing 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes radarPing {
+  0% { transform: scale(0.5); opacity: 1; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* ==========================================================================
+   SCROLL-DRIVEN STAGGER REVEAL ENGINE
+   ========================================================================== */
+.reveal-prep {
+  opacity: 0;
+  transform: translateY(28px) scale(0.98);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-prep.is-revealed {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* ==========================================================================
+   AMBIENT GLOW ORBS (3D Atmosphere)
+   ========================================================================== */
+.ambient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.45;
+  animation: floatOrb 12s ease-in-out infinite alternate;
+}
+
+.ambient-orb.emerald,
+.ambient-orb.azure {
+  background: radial-gradient(circle, #6cc4ff 0%, rgba(24, 156, 244, 0) 70%);
+}
+
+.ambient-orb.amber {
+  background: radial-gradient(circle, #FBBF24 0%, rgba(217, 119, 6, 0) 70%);
+}
+
+@keyframes floatOrb {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, -20px) scale(1.1); }
+  100% { transform: translate(-25px, 25px) scale(0.95); }
+}
+
+/* Shimmer Button Sweep */
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shimmer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transform: skewX(-25deg);
+  transition: none;
+}
+
+.btn-shimmer:hover::before {
+  left: 200%;
+  transition: left 0.8s ease;
+}
+

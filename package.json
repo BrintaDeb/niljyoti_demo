@@ -1,0 +1,19 @@
+{
+  "name": "car-and-van-rentals-india",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Production-Ready Car and Van Rentals Platform for India in Maximalist Style",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "vite preview --host 0.0.0.0 --port 10000"
+  },
+  "devDependencies": {
+    "vite": "^5.4.14"
+  },
+  "dependencies": {
+    "three": "^0.185.1"
+  }
+}
